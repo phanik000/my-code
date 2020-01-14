@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="US Cloud Payroll" duration-ms="19891" started-at="2020-01-14T07:39:48Z" finished-at="2020-01-14T07:40:08Z">
+    <groups>
+    </groups>
+    <test name="Smoke Test" duration-ms="19891" started-at="2020-01-14T07:39:48Z" finished-at="2020-01-14T07:40:08Z">
+      <class name="payrollsettings.tests.VerifyEmployerPayees">
+        <test-method status="PASS" signature="verifytoLaunchEmployerPayees()[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67]" name="verifytoLaunchEmployerPayees" duration-ms="2313" started-at="2020-01-14T13:09:49Z" finished-at="2020-01-14T13:09:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifytoLaunchEmployerPayees -->
+        <test-method status="PASS" signature="getReport(org.testng.ITestResult)[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67]" name="getReport" is-config="true" duration-ms="0" started-at="2020-01-14T13:09:51Z" finished-at="2020-01-14T13:09:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifytoLaunchEmployerPayees status=SUCCESS method=VerifyEmployerPayees.verifytoLaunchEmployerPayees()[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getReport -->
+        <test-method status="PASS" signature="verifyEmployerpayeesImport()[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67]" name="verifyEmployerpayeesImport" duration-ms="16699" started-at="2020-01-14T13:09:51Z" finished-at="2020-01-14T13:10:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyEmployerpayeesImport -->
+        <test-method status="PASS" signature="getReport(org.testng.ITestResult)[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67]" name="getReport" is-config="true" duration-ms="0" started-at="2020-01-14T13:10:08Z" finished-at="2020-01-14T13:10:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyEmployerpayeesImport status=SUCCESS method=VerifyEmployerPayees.verifyEmployerpayeesImport()[pri:0, instance:payrollsettings.tests.VerifyEmployerPayees@57829d67] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getReport -->
+      </class> <!-- payrollsettings.tests.VerifyEmployerPayees -->
+      <class name="signin.test.VerifySignInPage">
+        <test-method status="PASS" signature="baseSetup(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="baseSetup" is-config="true" duration-ms="15677" started-at="2020-01-14T13:09:33Z" finished-at="2020-01-14T13:09:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[phanikumar@checkmark.in]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Ch3ckMark!]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseSetup -->
+        <test-method status="PASS" signature="reportSetup()[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="reportSetup" is-config="true" duration-ms="278" started-at="2020-01-14T13:09:48Z" finished-at="2020-01-14T13:09:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportSetup -->
+        <test-method status="PASS" signature="VerifySigninpage()[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="VerifySigninpage" duration-ms="15" started-at="2020-01-14T13:09:49Z" finished-at="2020-01-14T13:09:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifySigninpage -->
+        <test-method status="PASS" signature="getReport(org.testng.ITestResult)[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="getReport" is-config="true" duration-ms="2" started-at="2020-01-14T13:09:49Z" finished-at="2020-01-14T13:09:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=VerifySigninpage status=SUCCESS method=VerifySignInPage.VerifySigninpage()[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getReport -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="endTest" is-config="true" duration-ms="535" started-at="2020-01-14T13:10:08Z" finished-at="2020-01-14T13:10:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:signin.test.VerifySignInPage@3b6eb2ec]" name="tearDown" is-config="true" duration-ms="103" started-at="2020-01-14T13:10:08Z" finished-at="2020-01-14T13:10:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- signin.test.VerifySignInPage -->
+    </test> <!-- Smoke Test -->
+  </suite> <!-- US Cloud Payroll -->
+</testng-results>

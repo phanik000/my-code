@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [US Cloud Payroll]">
+  <parameter name="Email" value="phanikumar@checkmark.in"/>
+  <parameter name="browser" value="chrome"/>
+  <parameter name="Password" value="Ch3ckMark!"/>
+  <test name="Smoke Test(failed)">
+    <classes>
+      <class name="signin.test.VerifySignInPage">
+        <methods>
+          <include name="reportSetup"/>
+          <include name="tearDown"/>
+          <include name="endTest"/>
+          <include name="VerifySigninpage"/>
+          <include name="baseSetup"/>
+          <include name="getReport"/>
+        </methods>
+      </class> <!-- signin.test.VerifySignInPage -->
+      <class name="payrollsettings.tests.VerifyEmployerPayees">
+        <methods>
+          <include name="verifyEmployerpayeesImport"/>
+          <include name="verifytoLaunchEmployerPayees"/>
+          <include name="getReport"/>
+        </methods>
+      </class> <!-- payrollsettings.tests.VerifyEmployerPayees -->
+    </classes>
+  </test> <!-- Smoke Test(failed) -->
+</suite> <!-- Failed suite [US Cloud Payroll] -->

@@ -1,0 +1,7 @@
+package payrollscreens.tests;
+
+import com.baseclass.BaseClass;
+
+public class VerifyEnterHours extends BaseClass{
+
+}

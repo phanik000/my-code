@@ -1,0 +1,61 @@
+package employeeSetup.pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.utilities.ObjectRepository;
+
+public class EmployeeSetup {
+	
+	@FindBy(xpath=ObjectRepository.DashboardEmployees)
+	public WebElement DashboardEmployees;
+	
+	@FindBy(xpath=ObjectRepository.CreateNewEmp)
+	public WebElement CreateNewEmp;
+	
+	@FindBy(xpath=ObjectRepository.EmpFirstName)
+	public WebElement EmpFirstName;
+	
+	@FindBy(xpath=ObjectRepository.EmpLastName)
+	public WebElement EmpLastName;
+	
+	@FindBy(xpath=ObjectRepository.NewEmpCreateButton)
+	public WebElement NewEmpCreateButton;
+	
+	@FindBy(xpath=ObjectRepository.AddrLine1)
+	public WebElement AddrLine1;
+	
+	@FindBy(xpath=ObjectRepository.AddrLine2)
+	public WebElement AddrLine2;
+	
+	@FindBy(xpath=ObjectRepository.CityName)
+	public WebElement CityName;
+	
+	@FindBy(xpath=ObjectRepository.ESetupStateName)
+	public WebElement ESetupStateName;
+	
+	@FindBy(xpath=ObjectRepository.ESetupZipCode)
+	public WebElement ESetupZipCode;
+	
+	@FindBy(xpath=ObjectRepository.SSNumber)
+	public WebElement SSNumber;
+	
+	@FindBy(xpath=ObjectRepository.EmailField)
+	public WebElement EmailField;
+	
+	@FindBy(xpath=ObjectRepository.PhoneNumber)
+	public WebElement PhoneNumber;
+	
+	@FindBy(xpath=ObjectRepository.DateOfBirth)
+	public WebElement DateOfBirth;
+	
+	@FindBy(xpath=ObjectRepository.EmpNumber)
+	public WebElement EmpNumber;
+	
+	@FindBy(xpath=ObjectRepository.DepartDropDown)
+	public WebElement DepartDropDown;
+	
+	@FindBy(xpath=ObjectRepository.EmpSaveButton)
+	public WebElement EmpSaveButton;
+	
+}

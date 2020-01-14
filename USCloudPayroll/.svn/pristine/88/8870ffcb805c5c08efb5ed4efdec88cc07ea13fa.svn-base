@@ -1,0 +1,200 @@
+package payrollsettings.tests;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+
+import payrollsettings.pages.Deductions;
+
+public class VerifyDeductions extends BaseClass{
+public Deductions ded;
+public String expectedtitle="Deductions";
+public String path = System.getProperty("user.dir") + readconfig.getDeductionsExcelPath();
+@Test(priority=12)
+		public void verifyPredefined() throws Exception {
+	 ArrayList<String> appstr=new ArrayList<String>();
+	 ArrayList<String> excelstr=new ArrayList<String>();
+			// Generating Extent report for lines(26,27)
+			test = report.startTest("Verify Hour Category LoadFromList Test");
+			test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+			// Page Factory Initilization using binary class of Hour Category
+			ded = PageFactory.initElements(driver, Deductions.class);
+			// Click on Company Setup and do some actions to get into Deductions screen
+			ded.CompanySetupDropdown.click();
+			iwait(20);
+			ded.PayrollSettingDashboard.click();
+			ded.DeductionsTab.click();
+			// Get the text/Title of Deductions to verify that we are in Deductions Screen
+			String actualtitle = ded.DeductionsPageTitle.getText();
+			// Verifying with expected and actual text/Title of Deductions screen
+			Assert.assertEquals(actualtitle, expectedtitle);
+			System.out.println("Page title is: " + actualtitle);
+			// click on to Load from List Button
+			ded.DeductionsLoadfromList.click();
+			Thread.sleep(1000);
+			// selecting categories to add into Deductions
+			loadFromList(ded.DeductionsLoadfromListSelectDropdown);
+			Thread.sleep(1000);
+			// click 'OK' Button to add to list
+			ded.DeductionsLoadfromListOkBtn.click();
+			Thread.sleep(1000);
+			// click confirm OK Button
+			ded.ConfirmPopupBtn.click();
+			// Here we used to Iterate list that we added from 'Load From List' Button.
+			Select s = new Select(ded.DeductionsDropDown);
+			List<WebElement> listsel = s.getOptions();
+			// Getting size of Deductions from listbox
+			int listselsize = listsel.size();
+			System.out.println("Deductions Category size is: " + listselsize);
+			// Here we used to iterate and click on element
+			for (int j = 0; j < listselsize; j++) {
+				WebElement e = listsel.get(j);
+				String appdrpdwntext = e.getText();
+				e.click();
+				Thread.sleep(1500);
+				// Getting Deductions textbox name and Calculation Method Amount text
+				String dedtextname = ded.DeductionsEditTextboxName.getAttribute("value");
+				String fixedamt_fixedpersenttextValue = ded.DeducCalcMethodAmountTextbox.getAttribute("value");
+				String empmatchamtrate = ded.AmountRate.getAttribute("value");
+				String empmatchannualwage = ded.AnnualWagesLimit.getAttribute("value");
+				// Here we are getting text of Calcualtion Method Type
+				Select s1 = new Select(ded.DeducCalcMethodDropDown);
+				WebElement e1 = s1.getFirstSelectedOption();
+				String caltext = e1.getText();
+				
+				// Here we are getting text of Fixed Percent drpdwn Type
+				Select s2 = new Select(ded.DeducCalcMethodApplyToDropdown);
+				WebElement e2 = s2.getFirstSelectedOption();
+				String fixedpercentdrpdwn = e2.getText();
+				
+				// Here we are getting text of Fixed amount drpdwn Type
+				Select s3 = new Select(ded.DeducCalcMethodPerDropdown);
+				WebElement e3 = s3.getFirstSelectedOption();
+				String fixedamtdrpdwn = e3.getText();
+				
+				// Here we are getting text of Fixed amount drpdwn Type
+				Select s4 = new Select(ded.EmpMatchType);
+				WebElement e4 = s4.getFirstSelectedOption();
+				String empmatchtypedrpdwn = e4.getText();
+				
+				// Here we are getting text of Limit Dropdown Type
+				Select li = new Select(ded.DeducLimitTypeDropDown);
+				WebElement ele = li.getFirstSelectedOption();
+				String limitDrpdwn = ele.getText();
+				// getting Limit Amount text
+				String limitamt = ded.AmountTextBox.getAttribute("value");
+		    
+				// comparing Deductions textbox name with excel if it stisfies it will get text
+				// of Deduction textbox name
+				if (dedtextname.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j + 1, 0))) {
+					System.err.println("***************************************");
+					Thread.sleep(500);
+					System.out.println("Drpdwn Text is: **" + appdrpdwntext + "**");
+					System.out.println("Textbox name: " + dedtextname);
+				} 
+				// comparing Deductions Calculation Method type Text name with excel if it
+				// stisfies it will get text of Calculation Method type name
+				if (caltext.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j + 1, 1))) {
+					System.out.println("Calculation Method type is: " + caltext);
+				}
+				//comparing fixedamount value/fixed percent value with excel
+				if(fixedamt_fixedpersenttextValue.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j + 1, 2))) {
+					System.out.println(caltext+" value is: "+fixedamt_fixedpersenttextValue);
+				}
+				
+				
+				//comparing Fixedpercent dropdwn with excel
+				if(fixedpercentdrpdwn.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j + 1, 3))) {
+					System.out.println(caltext+" Apply to is: "+fixedpercentdrpdwn);
+				}
+				//comparing FixedAmount dropdwn with excel
+				if(fixedamtdrpdwn.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j + 1, 3))) {
+					System.out.println(caltext+" Per is: "+fixedamtdrpdwn);
+				}
+		
+				// comparing Limit Drpdwn Text name with excel if it stisfies it will get
+				// text of Limit Drpdwn Text name
+			if(limitDrpdwn.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j+1, 4))) {
+				System.out.println("Limit type is: "+limitDrpdwn);
+			}
+			if(limitamt.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j+1, 5))) {
+				System.out.println("Limit Amount is: "+limitamt);
+			}
+	
+			if(empmatchtypedrpdwn.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j+1, 6))) {
+				System.out.println("Employee match type is: "+empmatchtypedrpdwn);
+			}
+			if(empmatchamtrate.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j+1, 7))) {
+				System.out.println("Employee match Amount is: "+empmatchamtrate);
+			}
+			if(empmatchannualwage.equalsIgnoreCase(excel.getCellData(path, "DeductionSampleTest", j+1, 8))) {
+				System.out.println("Employee match Annual wage amount is: "+empmatchannualwage);
+			}
+			
+			List<WebElement> chk= driver.findElements(By.xpath("//*[@class='Checked']"));	
+			int chksize=chk.size();
+			for(int i=0;i<chksize;i++) {
+				WebElement box=chk.get(i);
+				String boxname=box.getAttribute("name");
+				String ExcelVal=excel.getCellData(path,"DeductionSampleTest", j+1, 9);
+				String[] arrOfStr=ExcelVal.split(",");
+				for(String st:arrOfStr) {
+					if(st.contains(boxname)) {
+						//System.out.println("check boxes matched with excel");
+				if(box.isSelected()) {
+					System.out.println(boxname+" is Checked");
+					//excel.setCellData(path, "DeductionSampleTest", j+1, 10, "pass");
+				}else {
+					System.err.println(boxname+" is Unchecked");
+					//excel.setCellData(path, "DeductionSampleTest", j+1, 10, "fail");
+									}
+								}
+							}
+						}
+			
+			
+			appstr.add(dedtextname);
+			appstr.add(caltext);
+			appstr.add(fixedamt_fixedpersenttextValue);
+			appstr.add(fixedpercentdrpdwn);
+			appstr.add(fixedamtdrpdwn);
+			appstr.add(limitDrpdwn);
+			appstr.add(limitamt);
+			appstr.add(empmatchtypedrpdwn);
+			appstr.add(empmatchamtrate);
+			appstr.add(empmatchannualwage);
+			
+			
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 0));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 1));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 2));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 3));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 3));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 4));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 5));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 6));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 7));
+			appstr.add(excel.getCellData(path, "DeductionSampleTest", j + 1, 8));
+			
+			if(appstr.equals(excelstr)) {
+				excel.setCellData(path, "DeductionSampleTest", j+1, 10, "pass");
+			}else {
+				excel.setCellData(path, "DeductionSampleTest", j+1, 10, "fail");
+
+			}
+			
+			
+			
+			
+}
+}
+}

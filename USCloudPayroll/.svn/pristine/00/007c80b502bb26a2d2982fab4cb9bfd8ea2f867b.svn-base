@@ -1,0 +1,14 @@
+baseURL=http://testpayroll.checkmark.com/
+chromepath=./Drivers\\chromedriver.exe
+iepath=./Drivers\\IEDriverServer.exe
+firefoxpath=./Drivers\\geckodriver.exe
+AddtionalIncomeExcelpath=./Excel Files\\Additional Income.xlsx
+CompanyInformationExcelpath=./Excel Files\\CompanyInformation.xlsx
+CompareExistingEmployeesTaxValuesExcelpath=./Excel Files\\Compare Existing Employees Tax Values.xlsx
+FederalTaxesExcelpath=./Excel Files\\FederalTaxes.xlsx
+DepartmentsAndJobsExcelpath=./Excel Files\\DepartmentsAndJobs.xlsx
+HourCategoryExcelpath=./Excel Files\\HourCategory.xlsx
+LedgerAccountsExcelpath=./Excel Files\\LedgerAccounts.xlsx
+DeductionsExcelPath=./Excel Files\\Deductions.xlsx
+StateTaxesDataExcelpath=./Excel Files\\StateTaxes.xlsx
+LocalTaxesExcelpath=./Excel Files\\Local Taxes.xlsx

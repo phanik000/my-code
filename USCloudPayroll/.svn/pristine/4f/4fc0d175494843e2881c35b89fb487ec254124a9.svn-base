@@ -1,0 +1,240 @@
+package employeeSetup.pages;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.utilities.ObjectRepository;
+
+public class EmployeeSetup {
+	
+	@FindBy(xpath=ObjectRepository.DashboardEmployees)
+	public WebElement DashboardEmployees;
+	
+	@FindBy(xpath=ObjectRepository.CreateNewEmp)
+	public WebElement CreateNewEmp;
+	
+	@FindBy(xpath=ObjectRepository.EmpFirstName)
+	public WebElement EmpFirstName;
+	
+	@FindBy(xpath=ObjectRepository.EmpLastName)
+	public WebElement EmpLastName;
+	
+	@FindBy(xpath=ObjectRepository.NewEmpCreateButton)
+	public WebElement NewEmpCreateButton;
+	
+	@FindBy(xpath=ObjectRepository.AddrLine1)
+	public WebElement AddrLine1;
+	
+	@FindBy(xpath=ObjectRepository.AddrLine2)
+	public WebElement AddrLine2;
+	
+	@FindBy(xpath=ObjectRepository.CityName)
+	public WebElement CityName;
+	
+	@FindBy(xpath=ObjectRepository.ESetupStateName)
+	public WebElement ESetupStateName;
+	
+	@FindBy(xpath=ObjectRepository.ESetupZipCode)
+	public WebElement ESetupZipCode;
+	
+	@FindBy(xpath=ObjectRepository.SSNumber)
+	public WebElement SSNumber;
+	
+	@FindBy(xpath=ObjectRepository.EmailField)
+	public WebElement EmailField;
+	
+	@FindBy(xpath=ObjectRepository.PhoneNumber)
+	public WebElement PhoneNumber;
+	
+	@FindBy(xpath=ObjectRepository.DateOfBirth)
+	public WebElement DateOfBirth;
+	
+	@FindBy(xpath=ObjectRepository.EmpNumber)
+	public WebElement EmpNumber;
+	
+	@FindBy(xpath=ObjectRepository.DepartDropDown)
+	public WebElement DepartDropDown;
+	
+	@FindBy(xpath=ObjectRepository.EmpSaveButton)
+	public WebElement EmpSaveButton;
+	
+	@FindBy(xpath=ObjectRepository.ConfirmPopupBtn)
+	public WebElement ConfirmPopupBtn;
+	
+	@FindBy(xpath=ObjectRepository.WagesTab)
+	public WebElement WagesTab;
+	
+	@FindBy(xpath=ObjectRepository.SalPayPeriodTextBox)
+	public WebElement SalPayPeriodTextBox;
+	
+	@FindBy(xpath=ObjectRepository.PayFreqDropDown)
+	public WebElement PayFreqDropDown;
+	
+	@FindBy(xpath=ObjectRepository.HourRate1TextBox)
+	public WebElement HourRate1TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate2TextBox)
+	public WebElement HourRate2TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate3TextBox)
+	public WebElement HourRate3TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate4TextBox)
+	public WebElement HourRate4TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate5TextBox)
+	public WebElement HourRate5TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate6TextBox)
+	public WebElement HourRate6TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate7TextBox)
+	public WebElement HourRate7TextBox;
+	
+	@FindBy(xpath=ObjectRepository.HourRate8TextBox)
+	public WebElement HourRate8TextBox;
+	
+	@FindBy(xpath=ObjectRepository.WagesHireDateCal)
+	public WebElement WagesHireDateCal;
+	
+	@FindBy(xpath=ObjectRepository.WagesLastRaiseCal)
+	public WebElement WagesLastRaiseCal;
+	
+	@FindBy(xpath=ObjectRepository.WagesTermntnCal)
+	public WebElement WagesTermntnCal;
+	
+	@FindBy(xpath=ObjectRepository.EmpTaxesTab)
+	public WebElement EmpTaxesTab;
+	
+	@FindBy(xpath=ObjectRepository.FederalTableDropdown)
+	public WebElement FederalTableDropdown;
+	
+	@FindBy(xpath=ObjectRepository.FEDw4allwncBox)
+	public WebElement FEDw4allwncBox;
+	
+	@FindBy(xpath=ObjectRepository.FEDAddtlnWHBox)
+	public WebElement FEDAddtlnWHBox;
+	
+	@FindBy(xpath=ObjectRepository.StateAddWHbox)
+	public WebElement StateAddWHbox;
+	
+	@FindBy(xpath=ObjectRepository.SUTAStateDropdown)
+	public WebElement SUTAStateDropdown;
+	
+	@FindBy(xpath=ObjectRepository.StateTableDropdown)
+	public WebElement StateTableDropdown;
+	
+	@FindBy(xpath=ObjectRepository.StateAllowancesBox)
+	public WebElement StateAllowancesBox;
+	
+	@FindBy(xpath=ObjectRepository.StateExempTotal)
+	public WebElement StateExempTotal;
+	
+	@FindBy(xpath=ObjectRepository.TaxCredTotal)
+	public WebElement TaxCredTotal;
+	
+	@FindBy(xpath=ObjectRepository.LocalTaxDropDown)
+	public WebElement LocalTaxDropDown;
+	
+	@FindBy(xpath=ObjectRepository.LocalTaxAllowances)
+	public WebElement LocalTaxAllowances;
+	
+	@FindBy(xpath=ObjectRepository.LocalTaxExempTotal)
+	public WebElement LocalTaxExempTotal;
+	
+	@FindBy(xpath=ObjectRepository.LocalTaxCredTotal)
+	public WebElement LocalTaxCredTotal;
+	
+	@FindBy(xpath=ObjectRepository.CountyCodeBox)
+	public WebElement CountyCodeBox;
+	
+	@FindBy(xpath=ObjectRepository.CountyTaxableWages)
+	public WebElement CountyTaxableWages;
+	
+	@FindBy(xpath=ObjectRepository.CountyTaxWHBox)
+	public WebElement CountyTaxWHBox;
+	
+	@FindBy(xpath=ObjectRepository.IncomeTab)
+	public WebElement IncomeTab;
+	
+	@FindBy(xpath=ObjectRepository.AssignIncomeDropDown)
+	public WebElement AssignIncomeDropDown;
+	
+	@FindBy(xpath=ObjectRepository.IncomeDropDown)
+	public WebElement IncomeDropDown;
+	
+	@FindBy(xpath=ObjectRepository.DeductionTab)
+	public WebElement DeductionTab;
+	
+	@FindBy(xpath=ObjectRepository.DeductionDropDown)
+	public WebElement DeductionDropDown;
+	
+	@FindBy(xpath=ObjectRepository.AssignDeducButton)
+	public WebElement AssignDeducButton;
+	
+	@FindBy(xpath=ObjectRepository.EmpDropDown)
+	public WebElement EmpDropDown;
+	
+	@FindBy(xpath=ObjectRepository.DeleteEmpButton)
+	public WebElement DeleteEmpButton;
+	
+	@FindBy(xpath=ObjectRepository.WagesCommentBox)
+	public WebElement WagesCommentBox;
+	
+	@FindBy(xpath=ObjectRepository.AccuredHoursTab)
+	public WebElement AccuredHoursTab;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsCategoryDropDown)
+	public WebElement AccHrsCategoryDropDown;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsAssignBtn)
+	public WebElement AccHrsAssignBtn;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsAssignedCategories)
+	public WebElement AccHrsAssignedCategories;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsDeleteBtn)
+	public WebElement AccHrsDeleteBtn;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsHoursAvailableForUseTextBox)
+	public WebElement AccHrsHoursAvailableForUseTextBox;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsAllCheckBoxes)
+	public List<WebElement> AccHrsAllCheckBoxes;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsCarroverLimitTB)
+	public WebElement AccHrsCarroverLimitTB;
+	
+	@FindBy(xpath=ObjectRepository.CarryOverDate)
+	public WebElement CarryOverDate;
+	
+	@FindBy(xpath=ObjectRepository.CurrentYearAccrHrsTB)
+	public WebElement CurrentYearAccrHrsTB;
+	
+	@FindBy(xpath=ObjectRepository.AnnualAccrualCheckBoxTB)
+	public WebElement AnnualAccrualCheckBoxTB;
+	
+	@FindBy(xpath=ObjectRepository.AnnualUseMaxHrsTB)
+	public WebElement AnnualUseMaxHrsTB;
+	
+	@FindBy(xpath=ObjectRepository.CalcMethodEarnTB)
+	public WebElement CalcMethodEarnTB;
+	
+	@FindBy(xpath=ObjectRepository.HoursPerDropDown)
+	public WebElement HoursPerDropDown;
+	
+	@FindBy(xpath=ObjectRepository.StartRcvngDatepicker)
+	public WebElement StartRcvngDatepicker;
+	
+	@FindBy(xpath=ObjectRepository.HoursAvailblforUseDropDown)
+	public WebElement HoursAvailblforUseDropDown;
+	
+	@FindBy(xpath=ObjectRepository.HoursAvailableDatePicker)
+	public WebElement HoursAvailableDatePicker;
+	
+	@FindBy(xpath=ObjectRepository.AccHrsTotalAccrHrsMaxTB)
+	public WebElement AccHrsTotalAccrHrsMaxTB;
+	
+}

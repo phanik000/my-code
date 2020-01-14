@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="US Cloud Payroll" >
+<parameter name="browser" value="chrome"/>
+<parameter name="Email" value="phanikumar@checkmark.in"/>
+<parameter name="Password" value="Ch3ckMark!"/>
+
+  <test name="Smoke Test">
+  
+     <classes>
+    
+      <class name="signin.test.VerifySignInPage"/>
+      <class name="payrollsettings.tests.VerifyEmployerPayees"/>
+       
+      <!--    
+      
+      <class name="payrollscreens.tests.VerifyEnterHours"/>
+      <class name="payrollscreens.tests.VerifyDistributeHours"/>
+      
+      <class name="companyinfo.dashboard.tests.VerifyCompanyInformation"/>
+      <class name="payrollsettings.tests.VerifyFederalTaxes"/>
+      <class name="payrollsettings.tests.VerifyStateTaxes"/>
+      <class name="payrollsettings.tests.VerifyLocalTaxes"/>
+      <class name="payrollsettings.tests.VerifyHourCategories"/>
+       <class name="payrollsettings.tests.VerifyAdditionalIncome"/>
+      <class name="payrollsettings.tests.VerifyDeductions"/>
+     
+      <class name="payrollsettings.tests.VerifyLedgerAccounts"/>
+      
+      <class name="companyinfo.dashboard.tests.VerifyDepartmentsAndJobs"/>
+      <class name="payrollsettings.tests.VerifyHourCategoriesCustom"/>
+      <class name="payrollsettings.tests.VerifyLocalTaxesCustom"/>
+      <class name="payrollsettings.tests.VerifyAdditionalIncomeCustom"/>
+      <class name="payrollsettings.tests.VerifyDeductionsCustom"/>
+      -->      
+      
+    </classes>
+    
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

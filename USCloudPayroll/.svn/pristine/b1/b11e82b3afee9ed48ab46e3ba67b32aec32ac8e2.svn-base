@@ -1,0 +1,421 @@
+package com.utilities;
+
+public class ObjectRepository {
+// ****************SignIn credentials elements*******************************************
+
+	final static public String SigninPageEmailAddress = ".//*[@name='EmailAddress']";
+	final static public String SigninPagePassword = ".//*[@name='Password']";
+	final static public String SigninPageButton = ".//*[@id='submitbtn']";
+	final static public String RememberMeCheckbox = ".//*[@id='RememberMe']";
+	final static public String ForgotPasswordLink = ".//*[@href='/Account/ForgotPassword']";
+	final static public String SalesforceButtonlogin = ".//*[@id='loginpWithSalesForce']";
+	final static public String PrivacyPolicyLink = ".//*[@href='https://www.checkmark.com/privacy-policy']";
+	final static public String TermsofServLink = ".//*[@href='https://www.checkmark.com/terms-of-Service']";
+	final static public String RegisterHereLink = ".//*[@href='/Account/signup']";
+
+// ********************************DashBoard Clicks related Elements***********************************************
+	final static public String PayrollSettingDashboard = "//*[@class='payrollsettings']";
+	final static public String CompanySetupDropdown = ".//*[@class='dropdown-toggle']";
+	final static public String CompanyInformation = ".//*[@class='companyinfo']";
+	final static public String ConfirmPopupBtn = ".//*[@class='confirm']";
+	final static public String ConfirmPopupBtn1="//*[text()='Yes, Delete it']";
+	
+// *********************************Departments and Jobs related elements*********************************
+
+	final static public String DeptandJobsTab = ".//*[@href='/DepartmentJob/DepartmentJobs']";
+	final static public String DeptandJobsPageTitle = "//*[text()=' Department / Jobs']";
+	final static public String DepartmentTabPage = "//*[@href='#Department']";
+	final static public String CreateNewDeptButton = "(//*[@class='btn btn-primary2'])[1]";
+	final static public String DepartmentNameEditTxtBox = "//*[@id='DeptNameEdit']";
+	final static public String DepartmentNameAddTxtBox = "//*[@id='DeptNameAdd']";
+	final static public String SaveAddDeptButton = "//*[@id='addDept']";
+	final static public String ClearAddDepButton = "//*[@id='btnAddDeptCancel']";
+	final static public String CancelAddDepButton = "(//*[@id='resetJob'])[2]";
+
+	final static public String SaveEditDeptButton = "//*[@id='editDept']";
+	final static public String CancelEditDepButton = "(//*[@id='resetCustomers'])[1]";
+	final static public String ClearEditDepButton = "//*[@id='btnEditDeptClear']";
+	final static public String AllDeptNamesDropDown = "//*[@id='dropDeptList']";
+	final static public String DepartSearchButton = "(//*[@id='listSearchInput'])[1]";
+	final static public String DeleteDeptButton = "//*[@id='deptdelete']";
+	final static public String AlreadyExistsPopuptext = "//*[text()='Department Already Exists']";
+	final static public String DeptSavedPopuptext = "//*[text()='Department Saved Succefully.']";
+	// ****JObs****//
+	final static public String JobsTabPage = "//*[@href='#Jobs']";
+	final static public String CreateNewJobsBtn = "//*[@class='btn btn-primary2' and @onclick='openNav()']";
+	final static public String AlljobsNamesDropDown = "//*[@id='dropJobList']";
+	final static public String JobNameEditTextBox = "//*[@id='JobNameEdit']";
+	final static public String JobNumberEditTextBox = "//*[@id='JobNumberEdit']";
+	final static public String SaveEditJobButton = "//*[@id='editJob']";
+	final static public String CancelEditJobButton = "(//*[@id='resetCustomers'])[2]";
+	final static public String ClearEditJobButton = "//*[@id='btnEditJobClear']";
+	final static public String DeleteJobButton = "//*[@id='jobdelete']";
+	final static public String ImportJobButton = "//*[@id='btnJobImport']";
+
+	final static public String JobNameAddTextBox = "//*[@id='JobNameAdd']";
+	final static public String JobNumberAddTextBox = "//*[@id='JobNumberAdd']";
+	final static public String SaveAddJobButton = "//*[@id='addJob']";
+	final static public String CancelAddJobButton = "(//*[@id='resetJob'])[1]";
+	final static public String ClearAddJobButton = "//*[@id='btnEditJobClear']";
+
+// ********************************* State Taxes Xpaths*************************************************
+
+	final static public String StateTaxesTab = ".//*[@href='/StateTaxes/Index']";
+	final static public String ListOfStatesDropDown = "//*[@id='dropCategoryBindList']";
+	final static public String TaxTableButton = "//*[@id='btnTaxTable']";
+	final static public String CloseButton = ".//*[@class='closebtn' and @onclick='closeNavState()']";
+	final static public String LoadFromListButton = "//*[@onclick='openNavList()']";
+	final static public String DeleteCategoryButton = "//*[@id='btnDeleteCatgry']";
+	final static public String SearchTaxFromList = "//*[@class='search__field']";
+	final static public String StateTaxCatTextBox = "//*[@id='txtCategory']";
+	final static public String StateIDTextBox = "//*[@id='txtStateId']";
+	final static public String SUTAPercentTextBox = "//*[@id='txtSutaPer']";
+	final static public String MaxSUTATextBox = "//*[@id='txtSutaWage']";
+	final static public String AdditionalTaxInfoLink = "//*[@href='https://www.checkmark.com/additional-tax-information?year=2019']";
+	final static public String PerOfFedTaxChkBox = ".//*[contains(@id,'chk')]";
+	final static public String SubtractFedWHChkBox = "//*[@tabindex='12']";
+	final static public String RoundToNearstCheckBox = "//*[@tabindex='13']";
+	final static public String AnnualExempAmountTextBox = "//*[@id='txtAnnualExempt']";
+	final static public String AnnualTaxCredTextBox = "//*[@id='txtAnnualtaxCAmnt']";
+	final static public String MinSTDTextBox = "//*[@id='txtMinSTDAmnt']";
+	final static public String MaxSTDTextBox = "//*[@id='txtMaxSTDAmnt']";
+	final static public String STDDeducAsPerofGrowth = "//*[@id='txtSTDDedGrss']";
+	final static public String FedWHlimitTextBox = "//*[@id='txtFedWHLAmnt']";
+	final static public String FedWHlimitPerTextBox = "//*[@id='txtFedWHLimitPer']";
+	final static public String LowIncomeExempTextBox = "//*[@id='txtLowIncExemtAmnt']";
+	final static public String SaveButtonStatetaxes = ".//*[@id='BtnSaveCatgry']";
+	final static public String CancelButtonStatetaxes = ".//*[@id='cancelbutton']";
+	final static public String CloseButtonStateTaxes = ".//*[@class='closebtn' and @onclick='closeNavState()']";
+	final static public String ClearButtonStatetaxes = ".//*[@id='clearbutton']";
+	final static public String TaxTableData = ".//*[@id='tablebody']/tr/td";
+	final static public String AllTextBoxLengthsStateTaxes = ".//*[@type='text' and @onkeypress='return numbersonly(this,event)' or @type='text' and @onkeypress='return numbersonly(this, event)' ]";
+
+// *********************Company Information related elements******************************************
+	final static public String UserCompanyName = ".//*[@class='user-logo']";
+	final static public String CompanyInformationTitle = "(.//*[text()=' Company Information'])[2]";
+	final static public String CompanyLegalName = ".//*[@id='firstInput']";
+	final static public String TradeNameTextBox = ".//*[@id='Name']";
+	final static public String BusinessTypeDropdown = "(.//*[@class='form-control'])[3]";
+	final static public String UseTradeNameonCheckscheckbox = "(.//*[@class='checkbox'])[1]";
+	final static public String CompanyLogoUploadbtn = ".//*[@id='OpenImgUpload']";
+	final static public String CompanyPhonenumTextBox = ".//*[@id='Phone1']";
+	final static public String AddressLine1 = ".//*[@id='Addr1']";
+	final static public String AddressLine2 = ".//*[@id='Addr2']";
+	final static public String CityTextBox = ".//*[@id='City']";
+	final static public String StateName = ".//*[@id='StateName']";
+	final static public String ZipCode = ".//*[@id='Zip']";
+	final static public String FillingAddressSameAsBusinAddr = "(.//*[@class='checkbox'])[2]";
+	final static public String BusnsAddrline1 = ".//*[@id='BusinessAddr1']";
+	final static public String BusnsAddrline2 = ".//*[@id='BusinessAddr2']";
+	final static public String BusnsCityName = ".//*[@id='BusinessCityName']";
+	final static public String BusnsStateName = ".//*[@id='BusinessStateName']";
+	final static public String BusnsZipCode = ".//*[@id='BusinessZipCode']";
+	final static public String FederalID = ".//*[@id='FederalID']";
+	final static public String DateofIncorporation = ".//*[@id='DateofIncorporation']";
+	final static public String PayrollYearNonEditableTextbox = ".//*[@id='Year']";
+	final static public String CommentTextBox = ".//*[@id='Comments']";
+	final static public String SaveButton = ".//*[@id='SubmitCompany']";
+	final static public String CancelButton = ".//*[@id='btnCancel']";
+	final static public String ClearButton = ".//*[@id='btnClear']";
+	final static public String ConfirmPopupText = "//*[text()='Company Information updated successfully.']";
+	final static public String AllTextBoxes=".//*[@autocomplete='off']";
+
+// ***********************Hour Category Related elements*******************************************
+
+	final static public String HourCategoriesTab = ".//*[@href='/HourCategories/Index']";
+	final static public String HourCategoryPageTitle = ".//*[text()=' Hour Category']";
+	final static public String HourCategoryDropDown = ".//*[@id='listItems']";
+	final static public String LoadFromListSelectDropdwn = ".//*[@id='ListBoxId']";
+	final static public String LoadFromListOkButton = ".//*[@id='ok']";
+	final static public String SearchHourCatButton = ".//*[@tabindex='3']";
+	final static public String LoadFromListButtonHourCat = "//*[@id='firstInput']";
+	final static public String DeleteButton = ".//*[@id='delete']";
+	final static public String HourCategoryTextBox = ".//*[@id='category']";
+	final static public String EmpHourRateDropDown = ".//*[@id='Hourrate']";
+	final static public String EmpMultiplierDropDown = ".//*[@id='Multiplier']";
+	final static public String UseinCalcCheckBox = ".//*[@tabindex='8']";
+	final static public String CreateNewHourButton = ".//*[@value='New']";
+	final static public String NewHourCatNameTextBox = ".//*[@id='txtCategoryName']";
+	final static public String SaveNewHourCatButton = ".//*[@id='save']";
+	final static public String NewHourCatCancel = ".//*[@id='newcancel']";
+	final static public String SaveButtonHourCat = ".//*[@id='savecategory']";
+	final static public String ClearButtonHourCat = ".//*[@id='clear']";
+	final static public String CancelButtonHourCat = ".//*[@id='cancel']";
+	final static public String CancelNewButtonHourCat = ".//*[@id='newcancel']";
+	final static public String HourCatFullText=".//*[text()='The hour category list is full.']";
+// *******************Additional Income releated Elements***********************************
+
+	final static public String AdditionalIncomeTab = ".//*[@href='/AddlIncome/Index']";
+	final static public String AdditionalIncomePageTitle = ".//*[text()=' Additional Income']";
+	final static public String AdditionalIncomeDropDown = ".//*[@id='categoryId']";
+	final static public String SearchButtonAI = ".//*[@id='listSearchInput']";
+	final static public String LoadFromListAI = ".//*[@id='firstInput']";
+	final static public String LoadFromListSelectDropdown = ".//*[@id='dropaddincomeList']";
+	final static public String LoadFromListOkButtonAddinc = ".//*[@id='loadinUsPayroll']";
+	final static public String DeleteFromListAI = ".//*[@id='deletecatgoryName']";
+	final static public String AINameTextBox = ".//*[@id='txtEditAdditionalIncome']";
+	final static public String AICalcMethodDropDown = ".//*[@id='calculationId']";
+	final static public String AICalcMethodFixedAmountText = ".//*[@id='txtfixedamount']";
+	final static public String AICalcMethodPieceAmountText = ".//*[@id='txtamount']";
+	final static public String AICalcMethodPerDropdown = ".//*[@id='ddlfixedId']";
+	final static public String ApplyToWagesCheckBox = ".//*[@tabindex='9']";
+	final static public String OmitFromNetCheckBox = ".//*[@id='OmitNetError']";
+	final static public String MultipleCheckboxesAI = ".//*[@class='checkmark']";
+	final static public String CreateNewAIButton = ".//*[@onclick='openNavAddtinalincome()']";
+	final static public String NewAINameTextBox = ".//*[@id='txtCategoryName']";
+	final static public String NewAISaveButton = ".//*[@id='txtCategoryNameSave']";
+	final static public String NewAICancelButton = "(.//*[@value='Cancel'])[2]";
+	final static public String NewAITabCloseButton = "(.//*[@class='closebtn'])[1]";
+	final static public String SaveNewButtonAI=".//*[@id='txtCategoryNameSave']";
+	final static public String SaveButtonAI = ".//*[@id='btnSave']";
+	final static public String CancelButtonAI = ".//*[@id='btnCancel']";
+	final static public String CancelNewButtonAI="(.//*[@onclick='closeNavAddtinalincome()'])[2]"; 
+	final static public String ClearButtonAI = ".//*[@id='btnClear']";
+	final static public String AlreadyExistsTextAI="//p[@style='display: block;']";
+
+//*****************************Deductions related elements***************************************
+	final static public String DeductionsTab = ".//*[@href='/Deductions/Index']";
+	final static public String DeductionsPageTitle = ".//*[text()=' Deductions']";
+	final static public String DeductionsDropDown = ".//*[@id='categoryId']";
+	final static public String DeductionsCreateNew="//*[@onclick='openNavDeduction()']";
+	final static public String DeductionsEditTextboxName = ".//*[@id='txtEditAdditionalIncome']";
+	final static public String DeductionsAddTextboxName=".//*[@id='txtCategoryName']";
+	final static public String DeductionsSearchButton = ".//*[@id='listSearchInput']";
+	final static public String DeductionsLoadfromList = "//*[@id='firstInput']";
+	final static public String DeductionsLoadfromListSelectDropdown = ".//*[@id='dropaddincomeList']";
+	final static public String DeductionsLoadfromListOkBtn = ".//*[@id='loadinUsPayroll']";
+	final static public String DeductionsDelete = "//*[@id='deleteCategory']";
+	final static public String DeducCalcMethodDropDown = "//*[@id='calculationId']";
+	final static public String DeducCalcMethodAmountTextbox = "//*[@id='txtfixedamount']";
+	final static public String DeducCalcMethodApplyToDropdown = "//*[@id='ddlApplyID']";
+	final static public String DeducCalcMethodPerDropdown = "//*[@id='ddlfixedId']";
+	final static public String DeducLimitTypeDropDown = "//*[@id='LimitTypeId']";
+	final static public String AmountTextBox = "//*[@id='LimitAmount']";
+	final static public String EmpMatchType = "//*[@id='Matchtypeid']";
+	final static public String AmountRate = "//*[@id='MatchAmount']";
+	final static public String AnnualWagesLimit = "//*[@id='AnnualWagesLimit']";
+	final static public String ListOfCheckBoxesinDeductions = "//*[@class='checkmark']";
+	final static public String SaveButtonDeduc = ".//*[@id='btnSave']";
+	final static public String SaveAddButtonDeduc=".//*[@id='txtCategoryNameSave']";
+	final static public String CancelButtonDeduc = ".//*[@id='btnCancel']";
+	final static public String CancelNewButtonDeduc ="//*[@onclick='closeNavi()']";
+	final static public String ClearButtonDeduc = ".//*[@id='btnClear']";
+
+//********************************Federal Taxes**************************************************
+	final static public String FederalTaxesTab = "(//*[@href='FederalTaxes/Index'])[2]";
+	final static public String FederalWithholdingTextBox = "//*[@id='FederalWithHoldAllow']";
+	final static public String MaxFutaWagesTextBox = "//*[@id='MaxFutaWages']";
+	final static public String FUTAperTextBox = "//*[@id='FutaPer']";
+	final static public String MaxSocailSecWagesTextBox = "//*[@id='MaxSSWages']";
+	final static public String EmployeeSSecPer = "//*[@id='EmployeeSSPer']";
+	final static public String EmployerSSecPer = "//*[@id='EmployerSSPer']";
+	final static public String EmployeeMedicareTextBox = "//*[@id='EmployeeMedicarePer']";
+	final static public String EmployerMedicareTextBox = "//*[@id='EmployerMediCarePer']";
+	final static public String WitholdAddtnlMCareTextBox = "//*[@id='WithholdAddMCWagesExcess']";
+	final static public String EmployeeAddlMedcareTextBox = "//*[@id='EmployeeAddMCPer']";
+	final static public String SaveButtonFedTax = "//*[@id='save']";
+	final static public String CancelButtonFedTax = "//*[@id='cancel']";
+	final static public String ClearButtonFedTax = "//*[@id='clear']";
+	final static public String Load2020Button = ".//*[@value='Import']";
+	final static public String ReplaceYesOption = ".//*[@value='Yes']";
+	final static public String MarriedTaxTable = ".//*[@id='SingleTaxTable']";
+	final static public String MarrTaxTableValues = "//*[@id='single']/tbody/tr/td";
+	final static public String CloseButtonFedTaxtable = ".//*[@class='closebtn']";
+	final static public String AllTextBoxesFederal = ".//*[@onkeypress='return numbersonly(this, event)']";
+
+//*******************************Local Taxes related Elements*************************************
+
+	final static public String LocalTaxesTab = ".//*[@href='/LocalTaxes/Index']";
+	final static public String LocalTaxesPageTitle = ".//*[text()=' Local Taxes']";
+	final static public String LocalTaxesDropDown = ".//*[@id='dropLocalList']";
+	final static public String SearchLocalTaxbutton = ".//*[@id='listSearchInput']";
+	final static public String LocalTaxLoadFromListButton = "//*[@id='firstInput']";
+	final static public String LocalTaxLoadFromListDropdown = ".//*[@id='dropLocalTaxList']";
+	final static public String LocalTaxLoadFromListOkButton = ".//*[@id='btnLoadSave']";
+	final static public String DeleteLocalTaxButton = ".//*[@id='DeleteLocalTaxDet']";
+	final static public String TaxCategorynameTextBox = ".//*[@id='LocalTaxCat']";
+	final static public String LocalTaxCalculationMethodDropDown = ".//*[@id='Calcmethod']";
+	final static public String FixedPerTextBox = ".//*[@id='FixedPercentage']";
+	final static public String FixedAmountTextBox = ".//*[@id='FixedAmount']";
+	final static public String FixedAmountPerDropdown = ".//*[@id='Text']";
+	final static public String WagelimitTextBox = ".//*[@id='wageLimit']";
+	//Tax table elements
+	final static public String TaxTableNYC = ".//*[@id='TaxTableId']";
+	final static public String TaxTableValuesList="//*[contains(@class,'form-control clsTaxTab')]";
+	final static public String TaxTableAddLine=".//*[@id='AddTax']";
+	final static public String TaxTableRemoveLineBtn=".//*[@id='RemoveTax']";
+	final static public String TaxTableOverTextboxMultipleEdit="//*[contains(@name,'Over')]";
+	final static public String TaxTableRateTextboxMultipleEdit="//*[contains(@class,'clsTaxTabRate' )and//*[@placeholder='Rate']]";
+	final static public String TaxTableCloseLineMultiple=".//*[@onclick='DeleteValues(this)']";
+	final static public String TaxTableOkBtn=".//*[@id='btnTaxTable']";
+	final static public String TaxTableCloseBtn="(//*[@onclick='closeNavTax()'])[2]";
+	final static public String TaxTableValuesList1="//*[contains(@class,'allLocalTaxTables')]";
+	final static public String ExemptionAmountTextBox = ".//*[@id='ExptAmount']";
+	final static public String TaxCreditAmountTextBox = ".//*[@id='TaxCreAmount']";
+	final static public String MinSTDDeducTextBox = ".//*[@id='MInstdDedAmot']";
+	final static public String STDDeducAsPerofGrowthLocaltax = ".//*[@id='StdDedgrassAmt']";
+	final static public String MaxStdDeducAmount = ".//*[@id='MaxStdDedAmt']";
+	final static public String LocalTaxSaveButton = ".//*[@id='btnSave']";
+	final static public String LocalTaxCancelButton = ".//*[@id='btncancel']";
+	final static public String LocalTaxClearButton = ".//*[@id='clear']";
+	final static public String NewTaxCreationButton = ".//*[@id='NewOpen']";
+	final static public String EnterNewNameTextBox = ".//*[@id='CatgName']";
+	final static public String LocalTaxSaveNewButton = ".//*[@id='btnNewSave']";
+	final static public String LocalTaxCancelNewButton = ".//*[@name='cancel']";
+	final static public String CloseNewPopupWindow = "(.//*[@onclick='closeNavTax()'])[2]";
+
+//**************************************Employee Setup*****************************************************//
+	final static public String EmpDropDown=".//*[@id='EmpList']";
+	final static public String EmpSrchButton = ".//*[@id='listSearchInput']";
+	final static public String EmpCount = ".//*[@id='employeeCount']";
+	final static public String PersonalInfoTab = ".//*[@href='#personal']";
+	final static public String EmpFirstName = ".//*[@id='FNames']";
+	final static public String EmpLastName = ".//*[@id='LNames']";
+	final static public String AddrLine1 = ".//*[@id='AddressLine1']";
+	final static public String AddrLine2 = ".//*[@id='AddressLine2']";
+	final static public String CityName = ".//*[@id='City']";
+	final static public String ESetupStateName = ".//*[@id='State']";
+	final static public String ESetupZipCode= ".//*[@id='Zip']";
+	final static public String SSNumber = ".//*[@id='SocialSecurityNo']";
+	final static public String EmailField = ".//*[@id='Email']";
+	final static public String PhoneNumber = ".//*[@id='Phone']";
+	final static public String DateOfBirth = ".//*[@id='DateOfBirth']";
+	final static public String EmpNumber = ".//*[@id='EmployeeNo']";
+	final static public String DepartDropDown = ".//*[@id='dept']";
+	final static public String DeleteEmpButton=".//*[@id='btnDeleteEmployee']";
+			        //***************Wages*************//
+	final static public String WagesTab = ".//*[@href='#wages']";
+	final static public String SalPayPeriodTextBox = ".//*[@id='Sal_Payperiod']";
+	final static public String PayFreqDropDown = ".//*[@id='dropaddPayFreqList']";
+	final static public String HourRate1TextBox = ".//*[@id='Hurrate1']";
+	final static public String HourRate2TextBox = ".//*[@id='Hurrate2']";
+	final static public String HourRate3TextBox = ".//*[@id='Hurrate3']";
+	final static public String HourRate4TextBox = ".//*[@id='Hurrate4']";
+	final static public String HourRate5TextBox = ".//*[@id='Hurrate5']";
+	final static public String HourRate6TextBox = ".//*[@id='Hurrate6']";
+	final static public String HourRate7TextBox = ".//*[@id='Hurrate7']";
+	final static public String HourRate8TextBox = ".//*[@id='Hurrate8']";
+	final static public String WagesHireDateCal = ".//*[@id='EmpWages_HireDate']";
+	final static public String WagesLastRaiseCal = ".//*[@id='EmpWages_LastraiseDate']";
+	final static public String WagesTermntnCal = ".//*[@id='EmpWages_TerminationDate']";
+	final static public String SelectDeptButton = "(.//*[@class='btn btn-primary2'])[2]";
+	final static public String SelectJobsButton = "(.//*[@class='btn btn-primary2'])[3]";
+	final static public String ModifyPerButton = ".//*[@id='midify_id']";
+	final static public String WagesDeptList = ".//*[@id='dropaddDeptList']";
+	final static public String DeptDistbSaveButton = ".//*[@id='deptdistbtn']";
+	final static public String DeptDistbCancelButton = ".//*[@id='dprt_cancel']";
+	final static public String DeptSidewinClose = ".//*[@id='dprt_close']";
+	final static public String WagesCommentBox = ".//*[@id='Comments']";
+	final static public String FederalTableDropdown = ".//*[@id='FedparId']";
+	final static public String FEDw4allwncBox = ".//*[@id='FT_W_4Allow']";
+	final static public String FEDAddtlnWHBox = ".//*[@id='FT_Add_WH']";
+	final static public String SUTAStateDropdown = ".//*[@id='Suta_State']";
+	final static public String StateTableDropdown = ".//*[@id='State_Table']";
+	final static public String StateAllowancesBox = ".//*[@id='ST_Allowances']";
+	final static public String StateExempTotal = ".//*[@id='ST_ExmpTotal']";
+	final static public String TaxCredTotal = ".//*[@id='ST_CreditTotal']";
+	final static public String StateAddWHbox = ".//*[@id='ST_Add_WH']";
+	final static public String LocalTaxDropDown = ".//*[@id='Local_Id']";
+	final static public String LocalTaxAllowances = ".//*[@id='LT_Allowances']";
+	final static public String LocalTaxExempTotal = ".//*[@id='LT_Exemp_Total']";
+	final static public String LocalTaxCredTotal = ".//*[@id='LT_TaxCre_Total']";
+	final static public String CountyCodeBox = ".//*[@id='Code']";
+	final static public String CountyTaxableWages = ".//*[@id='CTaxTable_Wages']";
+	final static public String CountyTaxWHBox=".//*[@id='C_TaxWitheld']";
+	final static public String AdditionalTaxInfoLinkEmp = ".//*[@href=\"https://www.checkmark.com/additional-tax-information?year=2019\"]";
+	final static public String AssignIncomeDropDown = ".//*[@id='Assign']";
+	final static public String IncomeDropDown=".//*[@id='EmployeeIncomeListId']";
+	final static public String IncomeTab = ".//*[@href=\"#empincome\"]";
+	final static public String DeductionTab = ".//*[@href=\"#empdeduction\"]";
+	final static public String DeductionDropDown = ".//*[@id='categoryId']";
+	final static public String AssignDeducButton = ".//*[@id='btnSaveDeduction']";
+	final static public String AccuredHoursTab = ".//*[@href=’#accruedhours’ ]";
+	final static public String AssignCatsDropDown = ".//*[@id='CategorieListId']";
+	final static public String AssignCatButton = ".//*[@name=’save ’]";
+	final static public String DashboardEmployees = ".//*[@href=\"/Employee/empsetuptabs\"]";
+	final static public String CreateNewEmp = ".//*[@onclick='openNavEmployeePersonal();']";
+	final static public String NewEmpCreateButton = ".//*[@id='AddEmployee']";
+	final static public String EmpSaveButton = ".//*[@id='btnSubmitEmployee']";
+	final static public String EmpTaxesTab = ".//*[@href=\"#taxes\"]";
+	
+	//****************************************************************************Registration Page***********************************************************************************************************//
+	
+	final static public String ValidationErrosMsgs=".//*[@class='field-validation-valid field-validation-error']";
+	final static public String FullnameTextbox=".//*[@id='FullName']";
+	final static public String CompanyNameTextbox=".//*[@id='CompanyName']";
+	final static public String CompanyPhoneTextbox=".//*[@id='CompanyPhone']";
+	final static public String EmailAddressTextbox=".//*[@id='Email']";
+	final static public String PasswordTextbox=".//*[@id='Password']";
+	final static public String ConfirmPasswordTextbox=".//*[@id='ConfirmPassword']";
+	final static public String StartYourFreeTrailButton=".//*[@id='btnSignup']";
+	
+	      //*******Gmail fields ******//
+	
+	final static public String GmailLoginPageUrl ="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
+	final static public String GmailUsenameTextbox=".//*[@id='identifierId']";
+	final static public String GmailNextButton = ".//*[@class='RveJvd snByac']";
+	final static public String GmailPasswordTextbox=".//*[@name='password']";
+	final static public String GmailNextAfterPasswordButton=".//*[@class='RveJvd snByac' and contains(text(),'Next')]";
+	final static public String AllMailsSubjectField=".//*[@class='bog']";
+	final static public String MailGetStartedButton="(.//*[contains(text(),'Get Started')])[1]";
+	//***************************Employer Payees related Xpaths**************************************//
+	
+	final static public String EmployerPayeeTab = "//*[@href='/EmployerPayees/Index']";
+	final static public String EmployerPayeePageTitle = ".//*[text()=' Employer Payee']";
+	final static public String EmployerPayeeAddNewclick = "//*[@onclick='openNavPayee()']";	
+	final static public String Emp_payePaymenttypedrpdwn = "//*[@id='TpyeId']";
+	final static public String Emp_payeCreateNewtxtbox = "//*[@id='txtNewpayeeName']";
+	final static public String Emp_payeCreateNewtxtboxErrormessage = "//*[@id='txtNewpayeeError']";
+	final static public String EmployerPayeeclickOkButton = "//*[@id='BtnNewSave']";
+	final static public String EmployerPayeeclickCancelButton = "//*[@id='newcancel']";
+	final static public String EmployerPayeeCloseX = "//*[@id='newcancelcross']";
+	
+	final static public String Emp_payeListdrpdwn = "//*[@id='listItems']";
+	final static public String Emp_payeNametxtbox = "//*[@id='txtpayeeName']";
+	final static public String Emp_payeAddress1txtbox = "//*[@id='AddressLine1']";
+	final static public String Emp_payeAddress2txtbox = "//*[@id='AddressLine2']";
+	final static public String Emp_payeCitytxtbox = "//*[@id='City']";
+	final static public String Emp_payeStatetxtbox = "//*[@id='State']";
+	final static public String Emp_payeZiptxtbox = "//*[@id='Zip']";
+	final static public String Emp_payeRefIDtxtbox = "//*[@id='txtRef_Id']";
+	final static public String Emp_payeRouting1txtbox = "//*[@id='txtRouting1']";
+	final static public String Emp_payeAccount1txtbox = "//*[@id='txtAcct_1']";
+	
+	final static public String Emp_payePatment_typedrpdwn = "//*[@id='paymenttype']";
+	final static public String Emp_payeSelectStatetaxdrpdwn = "//*[@id='paymentstatetaxid']";
+	
+	
+	final static public String EmployerPayeeSaveBtn = "//*[@id='BtnUpdatePayee']";
+	final static public String EmployerPayeeCancelBtn = "//*[@id='btncancel']";
+	final static public String EmployerPayeeClearBtn = "//*[@id='btnclear']";
+	final static public String EmployerPayeeDeleteBtn = "//*[@id='btndelete']";
+	final static public String EmployerPayeeImportBtn = "//*[@id='(//*[@type='submit'])[2]']";
+	final static public String EmployerPayeeExportBtn = "//*[@id='(//*[@type='submit'])[3]']";
+	
+	//**********************************Accrued Hours Xpaths****************************//
+	final static public String AccHrsCategoryDropDown=".//*[@id='CategorieListId']";
+	final static public String AccHrsAssignBtn=".//*[@id='AssignId']";
+	final static public String AccHrsAssignedCategories=".//*[@id='EmpHourAccruedId']";
+	final static public String AccHrsDeleteBtn=".//*[@id='DeleteAH']";
+	final static public String AccHrsHoursAvailableForUseTextBox=".//*[@id='Regular_0-Avail_TotalAccHrAvlforUse']";
+	final static public String AccHrsAllCheckBoxes=".//*[@class='mycheckbox']";
+	final static public String AccHrsTotalAccrHrsMaxTB=".//*[@id='Regular_0-TAMax_TotalAccHrAvlforUse']";
+	final static public String AccHrsCarroverLimitTB=".//*[@id='Regular_0-COHAmt_Carry_OverHrLimit']";
+	final static public String CarryOverDate=".//*[@id='Regular_0-CODate_Carry_OverDate']";
+	final static public String CurrentYearAccrHrsTB=".//*[@id='Regular_0-AAMax_CurrentYrAccHrs']";
+	final static public String AnnualAccrualCheckBoxTB=".//*[@id='Regular_0-TmaxAmt_AnnualAccrealMax_Amt']";
+	final static public String AnnualUseMaxHrsTB=".//*[@id='Regular_0-CalcBal_AnnualUseMax_Amt']";
+	final static public String CalcMethodEarnTB=".//*[@id='Regular_0-PerHour_Earn_Hrs']";
+	final static public String HoursPerDropDown=".//*[@id='Regular_0-Type_Earn_Hrs_Per']";
+	final static public String StartRcvngDatepicker=".//*[@id='Regular_0-StartDate_Receiving']";
+	final static public String HoursAvailblforUseDropDown=".//*[@id='Regular_0-Type1_HrsAvalforUse']";
+	final static public String HoursAvailableDatePicker=".//*[@id='Regular_0-Type1_HrsAvalforUse']";
+
+	//***************************Ledger Accounts related Xpaths**************************************
+	
+	final static public String LedgerAccountsTab ="//*[@href='/LedgerAccounts/Index']"; 
+	final static public String LedgerSelectList ="//*[@id='selectProvince']";
+	final static public String LedgerGridCategoryList=".//*[@class='awe-tbody']/tr/td[@colspan]";
+	final static public String LedgerGridNextpage="(//*[@class='awe-btn-content'])[2]";
+	final static public String LedgerGridInfopage="//*[@class='gridPageInfo']";
+}

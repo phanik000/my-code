@@ -1,0 +1,136 @@
+package payrollsettings.tests;
+
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
+import payrollsettings.pages.LocalTaxes;
+
+public class VerifyLocalTaxes extends BaseClass {
+	public LocalTaxes loc;
+	public String expectedtitle = "Local Taxes";
+	public String path = System.getProperty("user.dir") + readconfig.getLocalTaxesDataExcelpath();
+
+	@Test(priority = 9)
+	public void verifyPredefinedVlaues() throws Exception {
+		test = report.startTest("Verify Hour Category LoadFromList Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		loc = PageFactory.initElements(driver, LocalTaxes.class);
+		loc.CompanySetupDropdown.click();
+		iwait(20);
+		loc.PayrollSettingDashboard.click();
+		loc.LocalTaxesTab.click();
+		String actualtitle = loc.LocalTaxesPageTitle.getText();
+		Assert.assertEquals(actualtitle, expectedtitle);
+		System.out.println("Page title is: " + actualtitle);
+		loc.LocalTaxLoadFromListButton.click();
+		Thread.sleep(1000);
+		loc.LocalTaxLoadFromListDropdown.click();
+		loc.LocalTaxLoadFromListDropdown.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		loc.LocalTaxLoadFromListOkButton.click();
+		Thread.sleep(1000);
+		loc.ConfirmPopupBtn.click();
+
+		Select s = new Select(loc.LocalTaxesDropDown);
+		List<WebElement> loclist = s.getOptions();
+		int localsize = loclist.size();
+		System.out.println("Local Taxes Category size is: " + localsize);
+		for (int j = 0; j < localsize; j++) {
+			WebElement localclick = loclist.get(j);
+			try {
+				localclick.click();
+				Thread.sleep(1500);
+				String localtaxDrpdwntext = localclick.getText();
+				System.out.println("Dropdown Text is: **" + localtaxDrpdwntext + "**");
+
+			} catch (Exception e) {
+				int k = j + 1;
+				localclick = driver.findElement(By.xpath("(.//*[@id='dropLocalList']//option)[" + k + "]"));
+				localclick.click();
+				Thread.sleep(1500);
+				String localtaxDrpdwntext = localclick.getText();
+				String localtextbox = loc.TaxCategorynameTextBox.getAttribute("value");
+
+				Select s1 = new Select(loc.LocalTaxCalculationMethodDropDown);
+				WebElement e1 = s1.getFirstSelectedOption();
+				String loctaxcalmethodtype = e1.getText();
+
+				String fixedpertextbox = loc.FixedPerTextBox.getAttribute("value");
+				String fixedamounttextbox = loc.FixedAmountTextBox.getAttribute("value");
+				String excelfixedamount = excel.getCellData(path, "LocaltaxesSampletest", k, 2);
+
+
+				Select s2 = new Select(loc.FixedAmountPerDropdown);
+				WebElement ele = s2.getFirstSelectedOption();
+				String FixedamountPerdropdown = ele.getText();
+				String excelFixedamountDrpdwn = excel.getCellData(path, "LocaltaxesSampletest", k, 4);
+
+
+				String wagelimittextbox = loc.WagelimitTextBox.getAttribute("value");
+				String excelwagelimitamount = excel.getCellData(path, "LocaltaxesSampletest", k, 3);
+
+				String exemptamounttextbox = loc.ExemptionAmountTextBox.getAttribute("value");
+				String taxcreditamounttextbox = loc.TaxCreditAmountTextBox.getAttribute("value");
+				String minstddeductextbox = loc.MinSTDDeducTextBox.getAttribute("value");
+				String std_deduc_aspergrowthtextbox = loc.STDDeducAsPerofGrowthLocaltax.getAttribute("value");
+				String maxstddeductextbox = loc.MaxStdDeducAmount.getAttribute("value");
+
+				String excelexemptamount = excel.getCellData(path, "LocaltaxesSampletest", k, 5);
+				String exceltaxcreditamount = excel.getCellData(path, "LocaltaxesSampletest", k, 6);
+				String excelminstddeduc = excel.getCellData(path, "LocaltaxesSampletest", k, 7);
+				String excelstd_deduc_aspergrowth = excel.getCellData(path, "LocaltaxesSampletest", k, 8);
+				String excelmaxstddeduc = excel.getCellData(path, "LocaltaxesSampletest", k, 9);
+
+				String excelloctaxcalmethodtype = excel.getCellData(path, "LocaltaxesSampletest", k, 1);
+				String excellocaltextbox = excel.getCellData(path, "LocaltaxesSampletest", k, 0);
+				System.err.println("Local tax Dropdown Text is: **" + localtaxDrpdwntext + "**");
+				if (localtextbox.equalsIgnoreCase(excellocaltextbox)) {
+					System.out.println("Local tax Textbox compared is: " + localtextbox);
+				}
+				if (loctaxcalmethodtype.equalsIgnoreCase(excelloctaxcalmethodtype)) {
+					System.out.println("Local Taxes Calc_method Type is: " + loctaxcalmethodtype);
+				}
+				if (fixedpertextbox.equalsIgnoreCase(excelfixedamount)) {
+					System.out.println(loctaxcalmethodtype+" amount value is: " +fixedpertextbox);
+				}
+				if (wagelimittextbox.equalsIgnoreCase(excelwagelimitamount)) {
+					System.out.println(loctaxcalmethodtype+" wagelimit value is: " +wagelimittextbox);
+				}
+				if (fixedamounttextbox.equalsIgnoreCase(excelfixedamount)) {
+					System.out.println(loctaxcalmethodtype+" amount value is: " +fixedamounttextbox);
+				}
+				if (FixedamountPerdropdown.equalsIgnoreCase(excelFixedamountDrpdwn)) {
+					System.out.println(loctaxcalmethodtype+" Dropdown value is: " +FixedamountPerdropdown);
+				}
+				
+				if (exemptamounttextbox.equalsIgnoreCase(excelexemptamount)) {
+					System.out.println(loctaxcalmethodtype+" exempt value is: " +exemptamounttextbox);
+				}
+				if (taxcreditamounttextbox.equalsIgnoreCase(exceltaxcreditamount)) {
+					System.out.println(loctaxcalmethodtype+" Taxcredit value is: " +taxcreditamounttextbox);
+				}
+				if (minstddeductextbox.equalsIgnoreCase(excelminstddeduc)) {
+					System.out.println(loctaxcalmethodtype+" Min Std Deduc value is: " +minstddeductextbox);
+				}
+				if (std_deduc_aspergrowthtextbox.equalsIgnoreCase(excelstd_deduc_aspergrowth)) {
+					System.out.println(loctaxcalmethodtype+" Std Deduc as per growth value is: " +std_deduc_aspergrowthtextbox);
+				}
+				if (maxstddeductextbox.equalsIgnoreCase(excelmaxstddeduc)) {
+					System.out.println(loctaxcalmethodtype+" Max Std Deduc value is: " +maxstddeductextbox);
+				}
+				excel.setCellData(path, "LocaltaxesSampletest", k, 10, "pass");
+			}
+		}
+
+	}
+}

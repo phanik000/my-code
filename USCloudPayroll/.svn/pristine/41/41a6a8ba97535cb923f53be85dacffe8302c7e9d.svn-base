@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="US Cloud Payroll" >
+<parameter name="browser" value="chrome"/>
+<parameter name="Email" value="phanikumar@checkmark.in"/>
+<parameter name="Password" value="Ch3ckMark!"/>
+
+  <test name="Smoke Test">
+  
+  
+    <classes>
+    
+      <class name="signin.test.VerifySignInPage"/>
+                  <class name="payrollsettings.tests.VerifyAdditionalIncome"/>
+      
+      <!--       
+      <class name="companyinfo.dashboard.tests.VerifyCompanyInformation"/>
+      <class name="payrollsettings.tests.VerifyHourCategories"/>
+                  <class name="payrollsettings.tests.VerifyDeductions"/>
+      
+      -->      
+      
+    </classes>
+    
+    
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

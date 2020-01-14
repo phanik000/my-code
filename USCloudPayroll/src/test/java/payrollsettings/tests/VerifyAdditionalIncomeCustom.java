@@ -1,0 +1,202 @@
+package payrollsettings.tests;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+import com.utilities.Utility;
+
+import payrollsettings.pages.AdditionalIncome;
+
+public class VerifyAdditionalIncomeCustom extends BaseClass {
+	public AdditionalIncome addinc;
+	public String expectedtitle="Additional Income";
+	public String path=System.getProperty("user.dir") +readconfig.getAdditionalIncomeExcelPath();
+ 
+	@Test(priority = 1,enabled=false)
+	public void VerifyToAddAdditionalIncome() throws Exception {
+		// Generating Extent report for lines(26,27)
+		test = report.startTest("Verify Additional Income to Add Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		// Page Factory Initilization using binary class of Additional Income
+		addinc = PageFactory.initElements(driver, AdditionalIncome.class);
+		// Click on Company Setup and do some actions to get into Additional Income
+		// screen
+		addinc.CompanySetupDropdown.click();
+		iwait(20);
+		addinc.PayrollSettingDashboard.click();
+		addinc.AdditionalIncomeTab.click();
+		// Get the text/Title of Additional Income to verify that we are in Additional
+		// Screen
+		String actualtitle = addinc.AdditionalIncomePageTitle.getText();
+		// Verifying with expected and actual text/Title of Additional Income screen
+		Assert.assertEquals(actualtitle, expectedtitle);
+		System.out.println("Page title is: " + actualtitle);
+		// Getting count of Additional Income size from excel
+		int addsize = excel.getRowCount(path, "Add Additional Income");
+		System.out.println("The Additional income size is " + addsize);
+		for (int i = 0; i < addsize; i++) {
+			// click on Create NEW Additional income
+			addinc.CreateNewAIButton.click();
+			// Getting additional income text from excel
+			String addtext = excel.getCellData(path, "Add Additional Income", i+1, 0);
+			// passing Additional income text through excel
+			addinc.NewAINameTextBox.sendKeys(addtext);
+			// click on save butotn
+			addinc.SaveNewButtonAI.click();
+			Thread.sleep(1000);
+			// click on confirm button
+			addinc.ConfirmPopupBtn.click();
+			// Here we make a condition that if already Additional Income added in list it
+			// tries to skip that added income category and try to add new Additional Income.
+			String canceltext = addinc.CancelNewButtonAI.getAttribute("value");
+			if (canceltext.equalsIgnoreCase("Cancel")) {
+				try {
+					addinc.CancelNewButtonAI.click();
+					Thread.sleep(1000);
+					System.out.println("Additional Income Already Exists");
+				} catch (Exception e) {
+					System.out.println("Additional Income Added Successfully");
+				}
+			}
+		}
+	}
+
+	@Test(priority=2,enabled=false)
+	public void verifyToModify() throws Exception {
+		test = report.startTest("Verify Additional Income Modify Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		// Page Factory Initilization using binary class of Additional Income
+		addinc = PageFactory.initElements(driver, AdditionalIncome.class);
+		// Click on Company Setup and do some actions to get into Additional Income
+		// screen
+		addinc.CompanySetupDropdown.click();
+		iwait(20);
+		addinc.PayrollSettingDashboard.click();
+		addinc.AdditionalIncomeTab.click();
+		int rowcnt=excel.getRowCount(path, "Edit Additional Income");
+		for(int i=0;i<rowcnt;i++) {
+			String addincomename=excel.getCellData(path, "Edit Additional Income", i+1, 0);
+			String addincomenameedit=excel.getCellData(path,"Edit Additional Income", i+1, 1);
+			String addincomecalmethod=excel.getCellData(path, "Edit Additional Income", i+1,2);
+			String addincomefixamt=excel.getCellData(path, "Edit Additional Income", i+1, 3);
+			String addincomefixdropdwn=excel.getCellData(path, "Edit Additional Income", i+1, 4);
+			Select s=new Select(addinc.AdditionalIncomeDropDown);
+			List<WebElement> ele=s.getOptions();
+			int size= ele.size();
+			for(int j=0;j<size;j++) {
+				WebElement eleclick= ele.get(j);
+				String appaddincomename=eleclick.getText();
+				if(appaddincomename.equalsIgnoreCase(addincomename)) {
+					eleclick.click();
+					Thread.sleep(1000);
+					addinc.AINameTextBox.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+					Thread.sleep(1000);
+					addinc.AINameTextBox.sendKeys(addincomenameedit);
+					addinc.calculationMethodVariableAmt(addincomecalmethod);
+					addinc.calculationMethodFixedAMT(addincomecalmethod, addincomefixamt, addincomefixdropdwn);
+					Thread.sleep(1000);
+					addinc.AdditionalIncomePageTitle.click();
+					Utility.waitToClickElement(addinc.SaveButtonAI);
+					// addinc.SaveButtonAI.click();
+					Thread.sleep(1500);
+					Utility.waitToClickElement(addinc.ConfirmPopupBtn);
+				}
+			}
+		}
+
+	}
+	@Test(priority =3,enabled=true)
+	public void verifytToDeleteAdditionalIncome() throws Exception {
+		test = report.startTest("Verify Additional Income Delete Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		// Page Factory Initilization using binary class of Additional Income
+		addinc = PageFactory.initElements(driver, AdditionalIncome.class);
+		// Click on Company Setup and do some actions to get into Additional Income
+		// screen
+		addinc.CompanySetupDropdown.click();
+		iwait(20);
+		addinc.PayrollSettingDashboard.click();
+		addinc.AdditionalIncomeTab.click();
+		// Getting the size of excel rows
+		int rowsize = excel.getRowCount(path, "Delete Additional Income");
+		// Iterating excel rows
+		for (int j = 0; j < rowsize; j++) {
+			String exceladdincdel = excel.getCellData(path, "Delete Additional Income", j + 1, 0);
+
+			Select s = new Select(addinc.AdditionalIncomeDropDown);
+			// Iterating application dropdown size untill satisfies with the excel
+			List<WebElement> deduclist = s.getOptions();
+			int sizededuc = deduclist.size();
+			for (int i = 0; i < sizededuc; i++) {
+				WebElement e = deduclist.get(i);
+				try {
+					String appdeducname = e.getText();
+					// comparing excel rows with application if it satisfies with excel it will
+					// click element
+					if (appdeducname.equalsIgnoreCase(exceladdincdel)) {
+						e.click();
+						Thread.sleep(1000);
+						// Actions to delete category
+						addinc.DeleteFromListAI.click();
+						Thread.sleep(1000);
+						// confirmation to delete category that mentioned in excel
+						addinc.ConfirmPopupBtn1.click();
+						Thread.sleep(1000);
+						addinc.ConfirmPopupBtn.click();
+						Thread.sleep(1000);
+					}
+					//As per Stale Exception Try/Catch Block has been written to get rid of Stale Exception
+				} catch (Exception e1) {
+					e = driver.findElement(By.xpath("//*[@id='categoryId']//option[" + i + "]"));
+					String appdeducname = e.getText();
+					if (appdeducname.equalsIgnoreCase(exceladdincdel)) {
+						e.click();
+						Thread.sleep(1000);
+						addinc.DeleteFromListAI.click();
+						Thread.sleep(1500);
+						addinc.ConfirmPopupBtn1.click();
+						Thread.sleep(1000);
+						addinc.ConfirmPopupBtn.click();
+						Thread.sleep(1000);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

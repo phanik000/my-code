@@ -1,0 +1,175 @@
+package com.utilities;
+
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Utility  {
+	public static WebDriver driver;
+	public static Alert alert;
+	
+	public Utility(WebDriver ldriver) {
+		Utility.driver=ldriver;
+	}
+	
+	
+	public String randomestring()
+	{ 
+		String generatedstring=RandomStringUtils.randomAlphabetic(8);
+		return(generatedstring);
+	}
+	
+	public static String randomeNum() {
+		String generatedString2 = RandomStringUtils.randomNumeric(2);
+		return (generatedString2);
+	
+	}
+	
+	public static void actionsToClickElement(WebElement ele) {
+		Actions a=new Actions(driver);
+		a.moveToElement(ele);
+		a.click().build().perform();
+			}
+	
+	public static void actionsToSendKeysElement(WebElement ele,String data) {
+		Actions a=new Actions(driver);
+		a.moveToElement(ele);
+		a.sendKeys(data).build().perform();
+		
+			}
+	
+	//To capture screenshot with unique name for failed test case
+	
+	public void captureScreen(WebDriver driver, String tname) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File target = new File(System.getProperty("user.dir") + "/Screenshots/" + tname + ".png");
+		FileUtils.copyFile(source, target);
+		System.out.println("Screenshot taken");
+	}
+	
+	
+	//user defined method created to check alert is present or not
+	
+	public static boolean isAlertPresent() 
+	{
+		try
+		{
+		alert=driver.switchTo().alert();
+	String alertmsg=alert.getText();
+	System.out.println("Alert text is: "+alertmsg);
+		return true;
+		}
+		catch(NoAlertPresentException e)
+		{
+			System.out.println("Alert is :"+e);
+			return false;
+		}
+		
+	}
+	
+	//Dropdown select
+	public static void dropdownSelect(WebElement element,String value) {
+		Select s=new Select(element);
+		s.selectByVisibleText(value);
+	
+	}
+	
+	//element to click using Java Script Executer
+		public static void javaScriptToClickElement(WebElement ele) {
+			JavascriptExecutor	jse =(JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click()", ele);
+		}
+		
+	
+		//element to click using explicitly wait
+		public static void waitToClickElement(WebElement ele) {
+			WebDriverWait date=new WebDriverWait(driver,20);
+			date.until(ExpectedConditions.visibilityOf(ele)).click();
+		}
+		
+		public static void waitToClickListElement(List<WebElement> ele,int i) {
+			WebDriverWait date=new WebDriverWait(driver,60);
+			date.until(ExpectedConditions.visibilityOfAllElements(ele)).get(i).click();
+		}
+		
+		public static void waitToClearElement(WebElement ele) {
+			WebDriverWait date=new WebDriverWait(driver,60);
+			date.until(ExpectedConditions.visibilityOf(ele)).clear();
+		}
+		
+		public static void waitToSendKeysForElement(WebElement ele,String text) {
+			WebDriverWait date=new WebDriverWait(driver,60);
+			date.until(ExpectedConditions.visibilityOf(ele)).sendKeys(text);;
+		}
+		
+	//element to wait using thread concept
+	public static void wait(int timeInSeconds) {
+		try {
+			Thread.sleep(timeInSeconds * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public static void chooseFileWithRobot(String imagePath) {
+	    StringSelection stringSelection = new StringSelection(imagePath);
+	    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+	    clipboard.setContents(stringSelection, null);
+
+	    Robot robot = null;
+
+	    try {
+	        robot = new Robot();
+	    } catch (Exception e) {
+	    	System.out.println("Excep is: "+e);
+	    }
+
+	    robot.delay(250);
+	    robot.keyPress(KeyEvent.VK_ENTER);
+	    robot.keyRelease(KeyEvent.VK_ENTER);
+	    robot.keyPress(KeyEvent.VK_CONTROL);
+	    robot.keyPress(KeyEvent.VK_V);
+	    robot.keyRelease(KeyEvent.VK_V);
+	    robot.keyRelease(KeyEvent.VK_CONTROL);
+	    robot.keyPress(KeyEvent.VK_ENTER);
+	    robot.delay(150);
+	    robot.keyRelease(KeyEvent.VK_ENTER);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

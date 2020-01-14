@@ -1,0 +1,70 @@
+package payrollscreens.tests;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+import com.utilities.Utility;
+
+import junit.framework.Assert;
+import payrollscreens.pages.DistributeHours;
+
+public class VerifyDistributeHours extends BaseClass {
+public DistributeHours dh;
+public String expectedtitle="Distribute Hours";
+public String path=System.getProperty("user.dir") +readconfig.getDistributeHoursDataExcelpath();
+
+
+@Test(priority=1,enabled=true)
+public void verifyDistributeHoursLaunch() {
+	test = report.startTest("Verify Distribute Hours Launch Test");
+	test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+	dh=PageFactory.initElements(driver, DistributeHours.class);
+	dh.PayrollDashboard.click();
+	dh.DistributeHoursDashboard.click();
+	String actual=dh.DistributeHoursPageTitle.getText();
+	Assert.assertEquals(expectedtitle, actual);
+	System.out.println(actual);
+	
+}
+@Test(priority=2,enabled=true)
+public void verifyDistributeHoursEdit() throws Exception {
+	test = report.startTest("Verify Distribute Hours Edit Test");
+	test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+	dh=PageFactory.initElements(driver, DistributeHours.class);
+	dh.PayrollDashboard.click();
+	dh.DistributeHoursDashboard.click();
+	String actual=dh.DistributeHoursPageTitle.getText();
+	Assert.assertEquals(expectedtitle, actual);
+	System.out.println(actual);
+	int row=excel.getRowCount(path, "DistributeHoursAdd");
+	for(int i=0;i<row;i++) {
+		Select s=new Select(dh.DistributeHoursEmpList);
+		List<WebElement>empsel=s.getOptions();
+		int empsiz=empsel.size();
+		for(int j=0;j<empsiz;j++) {
+			String exceltext=excel.getCellData(path, "DistributeHoursAdd", i, j);
+			WebElement el=empsel.get(j);
+			String apptext=el.getText();
+			if(apptext.contains(exceltext)) {
+				el.click();
+				Thread.sleep(1500);
+				Utility.waitToClickElement(dh.DistributeHoursAddNewBtn);
+				dh.DistributeHoursAddNewBtn.click();
+				Thread.sleep(2000);
+			}
+		}
+	}
+		
+}
+
+
+
+
+}

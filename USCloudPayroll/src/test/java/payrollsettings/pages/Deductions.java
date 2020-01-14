@@ -1,0 +1,109 @@
+package payrollsettings.pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.baseclass.BaseClass;
+import com.utilities.ObjectRepository;
+import com.utilities.Utility;
+
+public class Deductions extends BaseClass{
+    
+	@FindBy(xpath=ObjectRepository.CompanySetupDropdown)
+	public WebElement CompanySetupDropdown;
+	
+	@FindBy(xpath=ObjectRepository.PayrollSettingDashboard)
+	public WebElement PayrollSettingDashboard;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsTab)
+	public WebElement DeductionsTab;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsCreateNew)
+	public WebElement DeductionsCreateNew;
+	
+	
+	@FindBy(xpath=ObjectRepository.DeductionsPageTitle)
+	public WebElement DeductionsPageTitle;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsDropDown)
+	public WebElement DeductionsDropDown;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsEditTextboxName)
+	public WebElement DeductionsEditTextboxName;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsAddTextboxName)
+	public WebElement DeductionsAddTextboxName;
+	
+	
+	@FindBy(xpath=ObjectRepository.DeductionsSearchButton)
+	public WebElement DeductionsSearchButton;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsLoadfromList)
+	public WebElement DeductionsLoadfromList;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsLoadfromListSelectDropdown)
+	public WebElement DeductionsLoadfromListSelectDropdown;
+	
+	
+	@FindBy(xpath=ObjectRepository.DeductionsLoadfromListOkBtn)
+	public WebElement DeductionsLoadfromListOkBtn;
+	
+	@FindBy(xpath=ObjectRepository.ConfirmPopupBtn)
+	public WebElement ConfirmPopupBtn;
+	
+	@FindBy(xpath=ObjectRepository.ConfirmPopupBtn1)
+	public WebElement ConfirmPopupBtn1;
+	
+	@FindBy(xpath=ObjectRepository.DeductionsDelete)
+	public WebElement DeductionsDelete;
+	
+	@FindBy(xpath=ObjectRepository.DeducCalcMethodDropDown)
+	public WebElement DeducCalcMethodDropDown;
+	
+	@FindBy(xpath=ObjectRepository.DeducCalcMethodAmountTextbox)
+	public WebElement DeducCalcMethodAmountTextbox;
+	
+	@FindBy(xpath=ObjectRepository.DeducCalcMethodApplyToDropdown)
+	public WebElement DeducCalcMethodApplyToDropdown;
+	
+	@FindBy(xpath=ObjectRepository.DeducCalcMethodPerDropdown)
+	public WebElement DeducCalcMethodPerDropdown;
+	
+	@FindBy(xpath=ObjectRepository.DeducLimitTypeDropDown)
+	public WebElement DeducLimitTypeDropDown;
+	
+	@FindBy(xpath=ObjectRepository.AmountTextBox)
+	public WebElement AmountTextBox;
+	
+	@FindBy(xpath=ObjectRepository.EmpMatchType)
+	public WebElement EmpMatchType;
+	
+	@FindBy(xpath=ObjectRepository.AmountRate)
+	public WebElement AmountRate;
+	
+	@FindBy(xpath=ObjectRepository.AnnualWagesLimit)
+	public WebElement AnnualWagesLimit;
+	
+	@FindBy(xpath=ObjectRepository.ListOfCheckBoxesinDeductions)
+	public WebElement ListOfCheckBoxesinDeductions;
+	
+	@FindBy(xpath=ObjectRepository.SaveButtonDeduc)
+	public WebElement SaveButtonDeduc;
+	
+	@FindBy(xpath=ObjectRepository.SaveAddButtonDeduc)
+	public WebElement SaveAddButtonDeduc;
+	
+	
+	@FindBy(xpath=ObjectRepository.CancelButtonDeduc)
+	public WebElement CancelButtonDeduc;
+	
+	@FindBy(xpath=ObjectRepository.CancelNewButtonDeduc)
+	public WebElement CancelNewButtonDeduc;
+	
+	
+	@FindBy(xpath=ObjectRepository.ClearButtonDeduc)
+	public WebElement ClearButtonDeduc;
+	
+	
+	
+}

@@ -1,0 +1,152 @@
+package companyinfo.dashboard.tests;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+import com.utilities.Utility;
+
+import companyinfo.dashboard.pages.CompanyInformation;
+
+public class VerifyCompanyInformation extends BaseClass{
+	public CompanyInformation cmpnyinfo;
+	public String path = System.getProperty("user.dir") + readconfig.getCompanyInformationExcelPath();
+	String expectedtitle="Company Information";
+	@Test(priority =1,dataProvider="companyinformation") 
+	public void verifyCompanyInformationWithValidCredentials(String cmpnyname,String tradename,String businesstype,String cmpnylogo,String phneno,
+		String add1,String add2,String cityname,String statename,String zipcode,String federalID,String date,String comments) throws Exception {
+		test = report.startTest("Verify CompanyInformation Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		cmpnyinfo = PageFactory.initElements(driver, CompanyInformation.class);
+		cmpnyinfo.CompanySetupDropdown.click();
+		cmpnyinfo.CompanyInformation.click();
+		String actualtitle=	cmpnyinfo.CompanyInformationTitle.getText();
+		Assert.assertEquals(actualtitle, expectedtitle);
+		System.out.println("Page title is: "+actualtitle);
+		cmpnyinfo.CompanyLegalName.clear();
+		cmpnyinfo.CompanyLegalName.sendKeys(cmpnyname);
+		cmpnyinfo.TradeNameTextBox.clear();
+		cmpnyinfo.TradeNameTextBox.sendKeys(tradename);
+		Select s=new Select(cmpnyinfo.BusinessTypeDropdown);
+		s.selectByVisibleText(businesstype);
+		cmpnyinfo.CompanyLogoUploadbtn.click();
+		Utility.chooseFileWithRobot(cmpnylogo);
+		cmpnyinfo.CompanyPhonenumTextBox.sendKeys(phneno);
+		cmpnyinfo.AddressLine1.clear();
+		cmpnyinfo.AddressLine1.sendKeys(add1);
+		cmpnyinfo.AddressLine2.clear();
+		cmpnyinfo.AddressLine2.sendKeys(add2);
+		cmpnyinfo.CityTextBox.clear();
+		cmpnyinfo.CityTextBox.sendKeys(cityname);
+		cmpnyinfo.StateName.clear();
+		cmpnyinfo.StateName.sendKeys(statename);
+		cmpnyinfo.ZipCode.sendKeys(zipcode);
+		/*if(cmpnyinfo.FillingAddressSameAsBusinAddr.isSelected()) {
+			System.out.println("checkbox already selected");
+		}else {
+			cmpnyinfo.FillingAddressSameAsBusinAddr.click();
+			System.out.println("checkbox selected");
+		}*/
+		cmpnyinfo.FederalID.sendKeys(federalID);
+		cmpnyinfo.DateofIncorporation.clear();
+		cmpnyinfo.DateofIncorporation.sendKeys(date);
+		cmpnyinfo.CommentTextBox.clear();
+		cmpnyinfo.CommentTextBox.sendKeys(comments);
+		cmpnyinfo.SaveButton.click();
+		try {
+		String cmpnyinfoupdatedtext=cmpnyinfo.ConfirmPopupText.getText();
+		System.out.println("Company information updated successfull message is: "+cmpnyinfoupdatedtext);
+		cmpnyinfo.ConfirmPopupBtn.click();
+		}catch (Exception e) {
+			System.out.println("No confrim POP-UP!");
+		}
+		Thread.sleep(1500);
+	}
+	
+	// CompanyInformation Field Validation Test compare through Excel
+	@Test(priority=2)
+	public void fieldLengths() throws Exception {
+		test = report.startTest("Verify CompanyInformation Field Validation Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		cmpnyinfo = PageFactory.initElements(driver, CompanyInformation.class);
+		ArrayList<String> WebAppLengths= new ArrayList<String>();
+		ArrayList<String> ExpectedLengths= new ArrayList<String>();
+		cmpnyinfo.CompanySetupDropdown.click();
+		cmpnyinfo.CompanyInformation.click();
+		List<WebElement> allFieldLengths= cmpnyinfo.AllTextBoxes;
+		int size=allFieldLengths.size();
+		for(int i=0;i<size;i++) {
+			WebElement a= allFieldLengths.get(i);
+			String lengthFromApp=a.getAttribute("maxlength");
+			WebAppLengths.add(lengthFromApp);
+			System.out.println("Value from App for "+a.getAttribute("id")+" is :"+WebAppLengths);
+			try {
+			String LengthfromExcel=excel.getCellData(path,"Field Length Validations",i+1, 1);
+			
+			ExpectedLengths.add(LengthfromExcel);
+			System.out.println("Value from Excel for "+a.getAttribute("id")+" is :"+ExpectedLengths);
+			if(WebAppLengths.equals(ExpectedLengths)) {
+				excel.setCellData(path, "Field Length Validations", i+1, 2, "Passed!");
+			}else {
+				excel.setCellData(path, "Field Length Validations", i+1, 2, "Failed,Found "+lengthFromApp+".");
+			}
+			WebAppLengths.clear();
+			ExpectedLengths.clear();
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+	}
+	@Test(priority=3)
+	public void fieldErrorMessages() throws Exception {
+		test = report.startTest("Verify CompanyInformation Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		cmpnyinfo = PageFactory.initElements(driver, CompanyInformation.class);
+		iwait(10);
+		cmpnyinfo.CompanySetupDropdown.click();
+		cmpnyinfo.CompanyInformation.click();
+		cmpnyinfo.ClearButton.click();
+		cmpnyinfo.TradeNameTextBox.sendKeys("Test");
+		cmpnyinfo.SaveButton.click();
+		List<WebElement> ErrorElements=driver.findElements(By.xpath(".//*[@class='field-validation-valid field-validation-error']"));
+		int Error=ErrorElements.size();
+		for(int i=0;i<Error;i++) {
+			WebElement a= ErrorElements.get(i);
+			String Msg=a.getText();
+			System.err.println(Msg);
+			String ErroMsgExcel=excel.getCellData(path, "Error Messages", i+1, 1);
+			if(Msg.equals(ErroMsgExcel)) {
+				excel.setCellData(path, "Error Messages", i+1, 2, "Passed!");
+			}else {
+				excel.setCellData(path, "Error Messages", i+1, 2, "Failed!");
+				excel.setCellData(path, "Error Messages", i+1, 3, Msg);
+			}
+		}
+	}
+	@DataProvider(name = "companyinformation")
+	public String[][] getCompanyInformtionData() throws Exception {
+		int row = excel.getRowCount(path, "CompanyInformation");
+		int cel = excel.getCellCount(path, "CompanyInformation", 1);
+		String chequeDates[][] = new String[row][cel];
+
+		for (int i = 1; i <= row; i++) {
+			for (int j = 0; j < cel; j++) {
+				chequeDates[i - 1][j] = excel.getCellData(path, "CompanyInformation", i, j);
+
+			}
+		}
+		return chequeDates;
+
+	}
+
+}

@@ -1,0 +1,120 @@
+package payrollsettings.tests;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import com.baseclass.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
+
+import companyinfo.dashboard.pages.DepartmentsAndJobs;
+import payrollsettings.pages.EmployerPayees;
+
+public class VerifyEmployerPayees extends BaseClass{
+	public EmployerPayees emprpay;
+	public String expectedtitle="Employer Payee";
+	public String path=System.getProperty("user.dir") +readconfig.getEmployerpayeesDataExcelpath();
+	public WebElement emppayclick;
+	@Test(priority=1)
+	public void verifytoLaunchEmployerPayees() throws Exception {
+				
+					test = report.startTest("Verify EmployerPayees creation Test");
+					test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+					// Page Factory Initilization using binary class of EmployerPayees Income
+					emprpay = PageFactory.initElements(driver, EmployerPayees.class);
+					try {
+						emprpay.CompanySetupDropdown.click();
+						Thread.sleep(1000);
+					} catch (Exception e) {
+					driver.findElement(By.xpath("//*[@href='#homeSubmenu']")).click();
+					Thread.sleep(1000);
+					}
+					emprpay.PayrollSettingDashboard.click();
+	}
+	
+	
+	@Test(priority=2,dataProvider="EmployerPayees")
+	public void verifytoAddEmployerPayees(String payment_type,String name) throws Exception {
+				try {
+					test = report.startTest("Verify EmployerPayees creation Test");
+					test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+					
+					emprpay.EmployerPayeeTab.click();
+					emprpay.EmployerPayeeAddNewclick.click();
+					dropdownSelect(emprpay.Emp_payePaymenttypedrpdwn, payment_type);
+					Thread.sleep(1000);
+					emprpay.Emp_payeCreateNewtxtbox.sendKeys(name);
+					emprpay.EmployerPayeeclickOkButton.click();
+					Thread.sleep(1000);
+					emprpay.ConfirmPopupBtn.click();
+				} catch (Exception e) {
+					System.out.println("Exception is: " + e);
+				}
+	}
+/*	@Test(priority=3,enabled=true)
+	public void VerifyToDeleteEmployerPayees() throws Exception {
+		test = report.startTest("Verify To Delete Employer Payees Test");
+		test.log(LogStatus.INFO, "Test Started" + test.getStartedTime());
+		emprpay.EmployerPayeeTab.click();
+		
+		int excelcnt=excel.getRowCount(path, "DeleteEmployerPayee");
+		for(int i=0;i<excelcnt;i++){
+		String exceltext=excel.getCellData(path, "Delete Department", i+1, 0);
+		Select s=new Select(emprpay.Emp_payeListdrpdwn);
+		List<WebElement> emppaydrpdwn=s.getOptions();
+		int deptsize=emppaydrpdwn.size();
+		System.out.println("Dept Dropdown Size is: "+deptsize);
+		for(int j=0;j<deptsize;j++) {
+			
+			emppayclick=emppaydrpdwn.get(i);
+			
+				try {
+					String apptext=emppayclick.getText();
+					if(apptext.equalsIgnoreCase(exceltext)) {
+						emppayclick.click();
+					emprpay.EmployerPayeeDeleteBtn.click();
+					Thread.sleep(1000);
+					emprpay.ConfirmPopupBtn1.click();
+					Thread.sleep(1000);
+					emprpay.ConfirmPopupBtn.click();
+					Thread.sleep(1000);
+					}
+				} catch (Exception e) {
+					deptclick = driver.findElement(By.xpath("//*[@id='dropDeptList']//option["+i+"]"));
+				}
+			}
+
+		}
+	}
+	
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+	@DataProvider(name = "EmployerPayees")
+
+	public String[][] emPersonalInfo() throws Exception {
+		int row = excel.getRowCount(path, "AddnewEmployerPayee");
+		int cel = excel.getCellCount(path, "AddnewEmployerPayee", 1);
+		String chequeDates[][] = new String[row][cel];
+
+		for (int i = 1; i <= row; i++) {
+			for (int j = 0; j < cel; j++) {
+				chequeDates[i - 1][j] = excel.getCellData(path, "AddnewEmployerPayee", i, j);
+			}
+
+		}
+		return chequeDates;
+
+	}
+}
